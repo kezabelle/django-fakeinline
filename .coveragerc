@@ -1,0 +1,18 @@
+[run]
+source = fakeinline
+omit =
+    fakeinline/test_*
+branch = True
+data_file = .coverage
+timid = False
+
+[report]
+exclude_lines =
+    pragma: no cover
+precision = 0
+show_missing = True
+omit =
+    fakeinline/test_*
+
+[xml]
+output = coverage.xml
