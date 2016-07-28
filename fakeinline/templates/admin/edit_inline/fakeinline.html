@@ -1,1 +1,33 @@
-i
+{% comment %}
+Unless Django has changed to use {% include ... with x=y only %}, at least
+the following should be available in the context:
+    - add
+    - change
+    - has_add_permission (for the parent object)
+    - has_change_permission (for the parent object)
+    - has_delete_permission (for the parent object)
+    - inline_admin_formsets
+    - is_popup
+    - opts (for the parent object)
+    - original (the parent object itself, if editing)
+
+Most importantly, it will contain:
+    - inline_admin_formset
+    - inline_admin_formset.opts (the Fake Inline )
+    - inline_admin_formset.formset (your fake formset subclass)
+    - inline_admin_formset.formset.instance (parent object or None)
+    - inline_admin_formset.formset.admin_site (The AdminSite instance the model is bound to)
+
+    - inline_admin_formset.formset.parent_modeladmin (The ModelAdmin this FormSet's is linked to)
+{% endcomment %}
+{% if debug %}
+<ul class="messagelist">
+    <li class="warning">
+        You're using the default <code>fakeinline.html</code> template, which does nothing.
+        <br>
+        You're seeing this warning because you have <code>DEBUG = True</code> in
+        your Django settings file, and are using <code>django.template.context_processors.debug</code>.
+        Change that to <code>False</code> and this will display nothing.
+    </li>
+</ul>
+{% endif %}
