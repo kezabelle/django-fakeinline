@@ -9,3 +9,6 @@ VERSION = '0.1.0'
 
 def get_version():
     return version  # pragma: no cover
+
+
+default_app_config = 'fakeinline.apps.FakeInlineConfig'

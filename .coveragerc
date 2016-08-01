@@ -1,7 +1,7 @@
 [run]
 source = fakeinline
 omit =
-    fakeinline/test_*
+    fakeinline/tests/test_*
 branch = True
 data_file = .coverage
 timid = False
@@ -12,7 +12,7 @@ exclude_lines =
 precision = 0
 show_missing = True
 omit =
-    fakeinline/test_*
+    fakeinline/tests/test_*
 
 [xml]
 output = coverage.xml

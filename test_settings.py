@@ -17,12 +17,13 @@ DATABASES = {
 
 INSTALLED_APPS = [
     'django.contrib.sites',
+    'django.contrib.sessions',
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
     'django.contrib.auth',
     'django.contrib.admin',
-    'fakeinline',
-    'test_app',
+    'fakeinline.apps.FakeInlineConfig',
+    'fakeinline.tests.apps.FakeInlineTestsConfig',
 ]
 
 SKIP_SOUTH_TESTS = True
