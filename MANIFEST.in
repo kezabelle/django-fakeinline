@@ -3,3 +3,5 @@ include README.rst
 include tox.ini
 include Makefile
 global-include *.rst *.py *.html
+include .coveragerc
+include CHANGELOG

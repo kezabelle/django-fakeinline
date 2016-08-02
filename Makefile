@@ -17,8 +17,14 @@ clean-pyc:
 test: clean-pyc
 	python -B -R -tt -W ignore setup.py test
 
-dist: test clean
+dist: test clean-build clean-pyc
 	python setup.py sdist bdist_wheel
+
+check: dist
+	pip install check-manifest pyroma restview
+	check-manifest
+	pyroma .
+	restview --long-description
 
 run: clean-pyc
 	python demo_project.py runserver 0.0.0.0:8080
