@@ -4,8 +4,8 @@ django-fakeinline
 :author: Keryn Knight
 :version: 0.1.0
 
-`fakeinline` provides enough of the methods and attributes to trick the
-`Django Admin`_ into displaying it when mounted as part of an `inlines`
+``fakeinline`` provides enough of the methods and attributes to trick the
+`Django Admin`_ into displaying it when mounted as part of an ``inlines``
 declaration on a ModelAdmin. Where possible it does so without subclassing
 real Django classes, as should be the case with `Duck Typing`_.
 
@@ -24,7 +24,7 @@ No really, why?
 ---------------
 
 Because it's actually nicer to be able to wedge additional things into the admin,
-without overriding the `change_form.html` template on a per-model, per-app basis.
+without overriding the ``change_form.html`` template on a per-model, per-app basis.
 
 Example usage
 -------------
@@ -51,7 +51,7 @@ change view.
 Tests
 -----
 
-There's a couple in `fakeinline.tests` ... just enough to verify it doesn't
+There's a couple in ``fakeinline.tests`` ... just enough to verify it doesn't
 raise an exception on GET or POST.
 
 The license
