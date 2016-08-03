@@ -38,11 +38,14 @@ def make_readme(root_path):
                 yield f.read()
 
 
-URL = ""
+URL = "https://github.com/kezabelle/django-fakeinline"
 LONG_DESCRIPTION = "\r\n\r\n----\r\n\r\n".join(make_readme(HERE))
-SHORT_DESCRIPTION = ""
+SHORT_DESCRIPTION = "fakeinline provides enough of the methods and attributes to trick the Django Admin into displaying it when mounted as part of an inlines declaration on a ModelAdmin"
 KEYWORDS = (
-
+    "django",
+    "inline",
+    "admin",
+    "fake",
 )
 
 setup(
