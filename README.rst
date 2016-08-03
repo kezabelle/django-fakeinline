@@ -9,6 +9,11 @@ django-fakeinline
 declaration on a ModelAdmin. Where possible it does so without subclassing
 real Django classes, as should be the case with `Duck Typing`_.
 
+The 2 necessary subclasses are the ``FakeInline`` class itself, which must
+subclass ``InlineModelAdmin``, and the ``model`` attribute, ``FakeModel`` which
+must subclass ``Model``, but is unmanaged and abstract, so there is nothing
+touching the database.
+
 Why?!
 -----
 
@@ -27,13 +32,14 @@ Example usage
 Here's a simple way of putting the classic words **Hello world** onto a ModelAdmin::
 
     class MyFormset(FakeFormset):
+        # this probably works, but usually you'd point it at a template file.
+        template = Template('{{inline_admin_formset.formset.get_data}}')
+
         def get_data(self, *a, **kw):
             return 'Hello world'
 
     class MyInline(FakeInline):
-        fake_formset = MyFormSet
-        # this probably works, but usually you'd point it at a template file.
-        template = Template('{{inline_admin_formset.formset.get_data}}')
+        formset = MyFormSet
 
     class MyAdmin(ModelAdmin):
         inlines = [MyInline]
