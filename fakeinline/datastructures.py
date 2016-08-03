@@ -59,30 +59,44 @@ class FakeFormSet(object):
             'form': self.form,
         }
 
-class InlineChecks(InlineModelAdminChecks):
-    """ Wire up just enough to get through the system checks framework """
-    def _check_relation(self, obj, parent_model):
-        # Go away I know it doesn't have a relation to whatever the thing is
-        return []
+    # This is not required to fill out the API, but makes subclassing easier.
+    template = "admin/edit_inline/fakeinline.html"
 
-# We need to inherit from InlineModelAdmin and set this because of
+# class InlineChecks(InlineModelAdminChecks):
+#     """ Wire up just enough to get through the system checks framework """
+#     def _check_relation(self, obj, parent_model):
+#         # get rid of E202, I know it doesn't have a relation to whatever the thing is
+#         return []
+
+
+class FakeInlineChecks(object):
+    def check(self, *args, **kwargs):
+        return ()
+
+# We need to inherit from InlineModelAdmin because of E104, and because of
 # https://code.djangoproject.com/ticket/26816
 # its a separate subclass so that hopefully one day I can not have it...
 class FakeInline(InlineModelAdmin):
+    # model must be not None, and a subclass of Model, because of E105
+    # raised by the *parent* modeladmin in ModelAdminChecks._check_inlines_item
     model = FakeModel
-    checks_class = InlineChecks
-    template = "admin/edit_inline/fakeinline.html"
+    checks_class = FakeInlineChecks
     min_num = 1
     max_num = 1
     # This is necessary to avoid needing to subclass BaseModelFormSet
     # because of the system check.
-    fake_formset = FakeFormSet
+    formset = FakeFormSet
+
+    @property
+    def template(self):
+        return self.formset.template
 
     def get_formset(self, request, obj=None, **kwargs):
         # We're constructing a dynamic (unpicklable, sorry!) subclass
         # and attaching all the admin data to it, so that the formset
         # instance may do stuff.
-        parent_type = self.fake_formset.__name__
+        formset = self.formset
+        parent_type = formset.__name__
         clsname = str('AdminAware%s' % parent_type)
         extra_attrs = {
             'admin_site': self.admin_site,
@@ -90,7 +104,7 @@ class FakeInline(InlineModelAdmin):
             'request': request,
             'instance': obj,
         }
-        cls = type(clsname, (self.fake_formset,), extra_attrs)
+        cls = type(clsname, (formset,), extra_attrs)
         return cls
 
     def get_queryset(self, *args, **kwargs):
