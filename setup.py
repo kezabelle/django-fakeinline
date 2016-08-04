@@ -38,6 +38,7 @@ def make_readme(root_path):
                 yield f.read()
 
 
+LICENSE = "BSD License"
 URL = "https://github.com/kezabelle/django-fakeinline"
 LONG_DESCRIPTION = "\r\n\r\n----\r\n\r\n".join(make_readme(HERE))
 SHORT_DESCRIPTION = "fakeinline provides enough of the methods and attributes to trick the Django Admin into displaying it when mounted as part of an inlines declaration on a ModelAdmin"
@@ -53,6 +54,8 @@ setup(
     version="0.1.0",
     author="Keryn Knight",
     author_email="python-fakeinline@kerynknight.com",
+    maintainer="Keryn Knight",
+    maintainer_email="python-fakeinline@kerynknight.com",
     description=SHORT_DESCRIPTION[0:200],
     long_description=LONG_DESCRIPTION,
     packages=[
@@ -60,10 +63,11 @@ setup(
     ],
     include_package_data=True,
     install_requires=[
-        "Django>=1.4",
+        "Django>=1.8",
     ],
     tests_require=[
         "pytest>=2.6",
+        "pytest-django>=2.8",
         "pytest-cov>=1.8",
         "pytest-remove-stale-bytecode>=1.0",
         "pytest-catchlog>=1.2",
@@ -71,12 +75,12 @@ setup(
     cmdclass={"test": PyTest},
     zip_safe=False,
     keywords=" ".join(KEYWORDS),
-    license="BSD License",
+    license=LICENSE,
     url=URL,
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: BSD License",
+        "License :: OSI Approved :: {}".format(LICENSE),
         "Natural Language :: English",
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.7",
@@ -84,5 +88,9 @@ setup(
         "Programming Language :: Python :: 3.3",
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
+        "Framework :: Django",
+        "Framework :: Django :: 1.10",
+        "Framework :: Django :: 1.8",
+        "Framework :: Django :: 1.9",
     ],
 )
