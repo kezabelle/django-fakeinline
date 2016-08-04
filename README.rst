@@ -14,6 +14,15 @@ subclass ``InlineModelAdmin``, and the ``model`` attribute, ``FakeModel`` which
 must subclass ``Model``, but is unmanaged and abstract, so there is nothing
 touching the database.
 
+.. |travis_master| image:: https://travis-ci.org/kezabelle/django-fakeinline.svg?branch=master
+  :target: https://travis-ci.org/kezabelle/django-fakeinline
+
+==============  ======
+Release         Status
+==============  ======
+master          |travis_master|
+==============  ======
+
 Why?!
 -----
 
