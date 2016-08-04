@@ -3,6 +3,9 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 from __future__ import division
+
+from urllib.parse import urlparse
+
 import pytest
 from django.contrib import admin
 from django.core.urlresolvers import reverse
@@ -35,4 +38,7 @@ def test_POST_ok(django_admin, admin_client):
     redirect_to = reverse('admin:tests_modelfortesting_changelist')
     response = admin_client.post(url, data={}, follow=True)
     assert response.status_code == 200
-    assert response.redirect_chain == [(redirect_to, 302)]
+    # 1.8 included the http://host so we have to parse it out for compatibility.
+    # 1.9+ doesn't.
+    redirects = [(urlparse(url).path, code) for url, code in response.redirect_chain]
+    assert redirects == [(urlparse(redirect_to).path, 302)]
