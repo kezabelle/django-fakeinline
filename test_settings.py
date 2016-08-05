@@ -48,6 +48,17 @@ SITE_ID = 1
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
 )
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': TEMPLATE_CONTEXT_PROCESSORS
+        },
+    },
+]
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -60,3 +71,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'test_media')
 
 
 USE_TZ = True
+SILENCED_SYSTEM_CHECKS = ["1_8.W001"]
