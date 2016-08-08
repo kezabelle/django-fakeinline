@@ -2,7 +2,7 @@ django-fakeinline
 =================
 
 :author: Keryn Knight
-:version: 0.1.0
+:version: 0.1.1
 
 ``fakeinline`` provides enough of the methods and attributes to trick the
 `Django Admin`_ into displaying it when mounted as part of an ``inlines``

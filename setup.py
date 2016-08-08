@@ -51,7 +51,7 @@ KEYWORDS = (
 
 setup(
     name="fakeinline",
-    version="0.1.0",
+    version="0.1.1",
     author="Keryn Knight",
     author_email="python-fakeinline@kerynknight.com",
     maintainer="Keryn Knight",
