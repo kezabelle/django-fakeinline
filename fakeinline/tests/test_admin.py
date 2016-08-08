@@ -4,8 +4,10 @@ from __future__ import print_function
 from __future__ import unicode_literals
 from __future__ import division
 
-from urllib.parse import urlparse
-
+try:
+    from urllib.parse import urlparse
+except ImportError:  # py2.7 ... just for 1.8 tbh.
+    from urlparse import urlparse
 import pytest
 from django.contrib import admin
 from django.core.urlresolvers import reverse
