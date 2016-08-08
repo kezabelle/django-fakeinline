@@ -26,5 +26,8 @@ check: dist
 	pyroma .
 	restview --long-description
 
+release: dist
+	twine upload dist/*
+
 run: clean-pyc
 	python demo_project.py runserver 0.0.0.0:8080
