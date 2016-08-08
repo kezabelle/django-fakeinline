@@ -50,7 +50,7 @@ KEYWORDS = (
 )
 
 setup(
-    name="fakeinline",
+    name="django-fakeinline",
     version="0.1.1",
     author="Keryn Knight",
     author_email="python-fakeinline@kerynknight.com",
