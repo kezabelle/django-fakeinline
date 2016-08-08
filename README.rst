@@ -14,14 +14,20 @@ subclass ``InlineModelAdmin``, and the ``model`` attribute, ``FakeModel`` which
 must subclass ``Model``, but is unmanaged and abstract, so there is nothing
 touching the database.
 
+.. |travis_stable| image:: https://travis-ci.org/kezabelle/django-fakeinline.svg?branch=0.1.1
+  :target: https://travis-ci.org/kezabelle/django-fakeinline
+
+
 .. |travis_master| image:: https://travis-ci.org/kezabelle/django-fakeinline.svg?branch=master
   :target: https://travis-ci.org/kezabelle/django-fakeinline
 
 ==============  ======
 Release         Status
 ==============  ======
+stable (0.1.1)  |travis_stable|
 master          |travis_master|
 ==============  ======
+
 
 Why?!
 -----
@@ -34,6 +40,15 @@ No really, why?
 
 Because it's actually nicer to be able to wedge additional things into the admin,
 without overriding the ``change_form.html`` template on a per-model, per-app basis.
+
+
+Installation
+------------
+
+Beyond all considered reason, its on PyPI::
+
+  pip install django-fakeinline==0.1.1
+
 
 Example usage
 -------------
