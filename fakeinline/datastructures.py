@@ -62,6 +62,12 @@ class FakeFormSet(object):
     # This is not required to fill out the API, but makes subclassing easier.
     template = "admin/edit_inline/fakeinline.html"
 
+    # the following attrs are used when getting a AdminAware version
+    admin_site = None
+    parent_modeladmin = None
+    request = None
+    instance = None
+
 # class InlineChecks(InlineModelAdminChecks):
 #     """ Wire up just enough to get through the system checks framework """
 #     def _check_relation(self, obj, parent_model):
@@ -108,7 +114,7 @@ class FakeInline(InlineModelAdmin):
         return cls
 
     def get_queryset(self, *args, **kwargs):
-        return () # QuerySet(model=self.model).none() causes issues.
+        return ()
 
     # This is not required to fill out the API, but is useful for debugging ...
     def __repr__(self):
