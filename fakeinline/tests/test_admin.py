@@ -29,16 +29,37 @@ def test_not_there():
     assert ModelForTesting not in admin.site._registry
 
 
-def test_GET_ok(django_admin, admin_client):
+def test_add_GET_ok(django_admin, admin_client):
     url = reverse('admin:tests_modelfortesting_add')
     response = admin_client.get(url)
     assert response.status_code == 200
 
 
-def test_POST_ok(django_admin, admin_client):
+def test_add_POST_ok(django_admin, admin_client):
     url = reverse('admin:tests_modelfortesting_add')
     redirect_to = reverse('admin:tests_modelfortesting_changelist')
-    response = admin_client.post(url, data={}, follow=True)
+    response = admin_client.post(url, data={'hello': 'add'}, follow=True)
+    assert response.status_code == 200
+    # 1.8 included the http://host so we have to parse it out for compatibility.
+    # 1.9+ doesn't.
+    redirects = [(urlparse(url).path, code) for url, code in response.redirect_chain]
+    assert redirects == [(urlparse(redirect_to).path, 302)]
+
+
+@pytest.mark.django_db
+def test_edit_GET_ok(django_admin, admin_client):
+    obj = ModelForTesting.objects.create()
+    url = reverse('admin:tests_modelfortesting_change', args=(obj.pk,))
+    response = admin_client.get(url)
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_edit_POST_ok(django_admin, admin_client):
+    obj = ModelForTesting.objects.create()
+    url = reverse('admin:tests_modelfortesting_change', args=(obj.pk,))
+    redirect_to = reverse('admin:tests_modelfortesting_changelist')
+    response = admin_client.post(url, data={'hello':'edit'}, follow=True)
     assert response.status_code == 200
     # 1.8 included the http://host so we have to parse it out for compatibility.
     # 1.9+ doesn't.
