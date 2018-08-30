@@ -12,6 +12,8 @@ class FakeForm(object):
     base_fields = []
     media = Media()
 
+    def is_multipart(self):
+        return False
 
 class FakeFormSet(object):
     """ Enough of the FormSet API to fool Django. """
